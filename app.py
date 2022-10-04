@@ -1,4 +1,3 @@
-from isort import stream
 import streamlit
 
 streamlit.title("Hello World!")
