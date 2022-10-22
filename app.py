@@ -45,7 +45,7 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # display the dataframe
 streamlit.dataframe(fruityvice_normalized)
 
-my_cur.execute("insert into fruit_load_list values ('pick some fruit')")
+my_cur.execute("insert into fruit_load_list values ('get some fruit')")
 
 
 fruit_add = streamlit.text_input("What fruit would you like to add?", "")
