@@ -1,4 +1,3 @@
-from isort import stream
 import streamlit
 
 # import pandas as pd
