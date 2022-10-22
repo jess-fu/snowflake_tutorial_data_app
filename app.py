@@ -1,8 +1,12 @@
+from isort import stream
 import streamlit
-import pandas as pd
+
+# import pandas as pd
 import requests
 import snowflake.connector
+from urllib.error import URLError
 
+streamlit.stop()
 # connect with Snowflake
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
