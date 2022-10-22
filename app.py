@@ -3,6 +3,14 @@ import pandas as pd
 import requests
 import snowflake.connector
 
+# connect with Snowflake
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT * from fruit_load_list")
+my_data_row = my_cur.fetchall()
+streamlit.header("snowflake table includes fruit")
+streamlit.dataframe(my_data_row)
+
 streamlit.title("Healthy Dinner!")
 streamlit.header("Breakfast Menu")
 streamlit.text("Omega 3 & Blueburry Oatmeal")
@@ -19,6 +27,8 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 
 # Let's put a pick list here so they can pick the fruit they want to include
 streamlit.dataframe(fruits_to_show)
+my_cur.execute("insert into fruit_load_list values ('pick some fruit')")
+
 
 streamlit.header("Fruityvice Fruit Advice!")
 
@@ -34,16 +44,12 @@ streamlit.text(fruityvice_response.json())
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # display the dataframe
 streamlit.dataframe(fruityvice_normalized)
+my_cur.execute("insert into fruit_load_list values ('enter fruit and get result')")
 
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * from fruit_load_list")
-my_data_row = my_cur.fetchall()
-streamlit.header("snowflake table includes fruit")
-streamlit.dataframe(my_data_row)
 
 fruit_add = streamlit.text_input("What fruit would you like to add?", "")
 streamlit.write("The user entered ", fruit_add)
 
 fruit_add_prompt = "Thanks for adding " + fruit_add
 streamlit.text(fruit_add_prompt)
+my_cur.execute("insert into fruit_load_list values ('add fruit')")
