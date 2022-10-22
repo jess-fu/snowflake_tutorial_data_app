@@ -27,7 +27,7 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 
 # Let's put a pick list here so they can pick the fruit they want to include
 streamlit.dataframe(fruits_to_show)
-# my_cur.execute("insert into fruit_load_list values ('pick some fruit')")
+my_cur.execute("insert into fruit_load_list values ('pick some fruit')")
 
 
 streamlit.header("Fruityvice Fruit Advice!")
@@ -44,7 +44,8 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_c
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # display the dataframe
 streamlit.dataframe(fruityvice_normalized)
-my_cur.execute("insert into fruit_load_list values ('enter fruit and get result')")
+
+my_cur.execute("insert into fruit_load_list values ('pick some fruit')")
 
 
 fruit_add = streamlit.text_input("What fruit would you like to add?", "")
