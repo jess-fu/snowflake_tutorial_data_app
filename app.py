@@ -69,4 +69,4 @@ streamlit.write("The user entered ", fruit_add)
 
 fruit_add_prompt = "Thanks for adding " + fruit_add
 streamlit.text(fruit_add_prompt)
-my_cur.execute("insert into fruit_load_list values ('add fruit')")
+# my_cur.execute("insert into fruit_load_list values ('add fruit')")
